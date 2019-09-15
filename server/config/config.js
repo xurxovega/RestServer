@@ -4,14 +4,13 @@ process.env.PORT = process.env.PORT || 3000;
 //Entorno
 process.env.NODE_ENV = process.NODE_ENV || 'dev';
 
-//DB
-
+// Variable for DB
 let urlDB = '';
 
 if (process.env.NODE_ENV === 'dev'){
     urlDB = 'mongodb://localhost:27017/cafe';
 }else{
-    urlDB = process.env.MONGO_URI;
+    urlDB = process.env.MONGO_URI; // Declarada en Heroku como heroku config
 }
 
 process.env.URLDB = urlDB;
