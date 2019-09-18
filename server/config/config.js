@@ -14,3 +14,9 @@ if (process.env.NODE_ENV === 'dev'){
 }
 
 process.env.URLDB = urlDB;
+
+// Expires Token
+process.env.EXPIRES_TOKEN = (60 * 60 * 60); // 1 day
+
+// Password Token
+process.env.SEED_TOKEN = process.env.SEED_TOKEN || '533D_T0K3N';

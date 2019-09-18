@@ -3,15 +3,19 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const app = express();
 
-const User  = require('../models/user')
+const User  = require('../models/user');
 
-app.get('/users/:page?', function (req, res) {
+const { authToken, authAdminRole } = require('../middlewares/auth');
+
+app.get('/users/:page?', authToken, (req, res) =>  {
 
     // Para hacerlo así la url debería ser /users?from=10 o /users?limit=10 o /users?limit=10&from =4
     //let from = req.query.from || 0;
     //from = Number(from);
     //let limit = req.query.limit || 0;
     //limit = Number(limit);
+
+    //console.log(req.payload);
 
     var itemsPerPage = 3;
     var page = req.params.page;
@@ -43,7 +47,7 @@ app.get('/users/:page?', function (req, res) {
     //res.json('Get from Users')
 });
 
-app.post('/users', function (req, res) {
+app.post('/users', [authToken, authAdminRole], (req, res) => {
 
     let user = new User({
         name:     req.body.name,
@@ -63,7 +67,7 @@ app.post('/users', function (req, res) {
 
 });
 
-app.put('/users/:id', function (req, res) {
+app.put('/users/:id', [authToken, authAdminRole], (req, res) => {
     let id = req.params.id;
     //let updateUser = req.body;
     let updateUser = _.pick(req.body, ['name', 'email', 'img', 'role', 'state']); // Solo actualiza estos campos
@@ -95,7 +99,7 @@ app.put('/users/:id', function (req, res) {
 });
 
 
-app.delete('/users/:id', function (req, res) {
+app.delete('/users/:id', [authToken, authAdminRole], (req, res) => {
 
     let id = req.params.id;
 
