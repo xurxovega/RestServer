@@ -55,4 +55,4 @@ userSchema.methods.toJSON = function () {
 // Retorna el mensaje de erro de forma más 'friendly'
 userSchema.plugin(uniqueValidator, {message: '{PATH} ya existe'})
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('User', userSchema);

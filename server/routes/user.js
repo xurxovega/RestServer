@@ -34,7 +34,7 @@ app.get('/users/:page?', authToken, (req, res) =>  {
         if (err) {
             return res.status(400).json({ ok: false, message: err });
         }
-            User.count({ state: true }, (err, count) =>{
+            User.countDocuments({ state: true }, (err, count) =>{
             return res.json({
                 ok: true,
                 users: users,
