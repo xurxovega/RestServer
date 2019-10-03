@@ -1,4 +1,4 @@
- var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
@@ -20,6 +20,10 @@ var productSchema = new Schema({
         required: true, 
         default: true 
     },
+    img: {
+        type: String,
+        required: false
+    },    
     category: { 
         type: Schema.Types.ObjectId, 
         ref: 'Category',
